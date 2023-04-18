@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
@@ -144,6 +146,40 @@ import java.awt.event.*;
                 }
             }
         }
+        private  int topScore;
+
+        private void loadTopScore() {
+            try {
+                File file = new File("topscore.txt");
+                if (file.exists()) {
+                    Scanner scanner = new Scanner(file);
+
+                    topScore = scanner.nextInt();
+
+                } else {
+/* I am going to make it so the user inputs a name for the top score!!!
+Maybe make it top 3?
+ */
+                    topScore = 0;
+
+                    PrintWriter writer = new PrintWriter(file);
+                    writer.println(topScore);
+                }
+            } catch (Exception e) {
+                System.err.println("Error");
+            }
+        }
+        private void saveTopScore() {
+            try {
+                PrintWriter writer = new PrintWriter("topscore.txt");
+
+                writer.println(topScore);
+
+            } catch (Exception e) {
+                System.err.println("Error");
+            }
+        }
+
     }
 
 
